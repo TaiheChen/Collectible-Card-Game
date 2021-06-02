@@ -1,0 +1,86 @@
+html
+    head
+
+        title="user profile for "+username
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js")
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")    
+        link(rel="stylesheet", href="/abc.css")
+    body
+        #add
+        div(class="conta")
+            h1="profile for "+username
+            a(id='logout') logout
+            br
+            br
+            table(style='width:100%')
+                tr
+                    th(style='width:33%')=username+"'s Cards"
+                    th=username+"'s Friends"
+                    th(style='width:33%') Add friends
+                tr
+                    td 
+                        ul
+                        each c in card
+                            a(href="http://localhost:3000/cards/"+c.name)
+                                li=c.name    
+                                
+                    td
+                        .flst
+                            ul
+                            each f in friend
+                                a(href="http://localhost:3000/friend/"+f.username+"/"+tk1)
+                                    li=f.username       
+                    td
+                        h3 Search by name:
+                        .cont
+                            input.search-input(type='text' placeholder='Search here...')
+                            .suggestions            
+            br
+            table(style='width:100%')
+                tr
+                    th(style='width:33%')="      "
+                    th="       "
+                    th(style='width:33%') Pending friends Request
+                tr
+                    td 
+                                
+                    td
+                     
+                    td                            
+                        .pending
+                             
+            br
+            table(style='width:100%')
+                tr
+                    th(style='width:33%')
+                        h2 Pending Trade Requests
+                        .treq
+                    th(style='width:33%')
+                        h2 Propose a trade
+                    th(style='width:33%') Select a Frend
+                tr
+                    td
+                        br
+                        each f in trade
+                            a(href='http://localhost:3000/trade/'+f._id)='Trade from '+f.sender.username 
+                            br
+                                
+                    td Select your cards to add to the trade
+                        br
+                        .senderCards
+                            each f in card
+                                input(type="checkbox", class='sendc',value=f.name)
+                                label=f.name
+                                br       
+                    td
+                    
+                        select(class="fr_card") 
+                            option(value="dummy") --select-- 
+                            each f in friend
+                                option=f.username   
+                        br
+                        br
+                        .rec
+            h1(id='check')=tk1                                
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")                         
+        script(src="/bcd.js")                

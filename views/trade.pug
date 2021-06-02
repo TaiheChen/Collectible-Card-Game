@@ -1,0 +1,23 @@
+html    
+    head
+        title='trade proposed by'+sender.username
+    body
+        label='trade proposed by:'+sender.username
+        br
+        br
+        label=sender.username+' cards you receive:'
+        br
+        ul
+            each c in sender.cards
+                li=c[0].name
+        br
+        label='Cards you give to '+sender.username
+        br
+        ul
+            each c in receiver.cards
+                li=c[0].name
+        br
+        button(id='confirm',value=tid) Confirm trade
+        button(id='reject',value=tid) Reject trade
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+        script(src="/trade.js") 
